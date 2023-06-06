@@ -5,8 +5,8 @@ const addBookHandler = (request, h) => {
   const data = request.payload;
 
   const id = nanoid(8);
-  const createdAt = new Date().toISOString();
-  const updatedAt = createdAt;
+  const insertedAt = new Date().toISOString();
+  const updatedAt = insertedAt;
   let finished = false;
 
   if (!data.name) {
@@ -34,7 +34,7 @@ const addBookHandler = (request, h) => {
     id,
     ...data,
     finished,
-    createdAt,
+    insertedAt,
     updatedAt,
   };
 
@@ -44,7 +44,7 @@ const addBookHandler = (request, h) => {
     status: "success",
     message: "Buku berhasil ditambahkan",
     data: {
-      Bookid: id,
+      bookId: id,
     },
   });
 
@@ -87,7 +87,7 @@ const getAllBooksHandler = (request, h) => {
     },
   });
 
-  response.code(201);
+  response.code(200);
   return response;
 };
 
@@ -100,7 +100,7 @@ const getBooksByIdHandler = (request, h) => {
     return {
       status: "success",
       data: {
-        theBook,
+        book: theBook,
       },
     };
   }
@@ -118,7 +118,7 @@ const editBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
   const body = request.payload;
-  const updatedAt = new Date().toISOString;
+  const updatedAt = new Date().toISOString();
 
   const index = books.findIndex((book) => book.id === id);
 
