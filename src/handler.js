@@ -53,7 +53,6 @@ const addBookHandler = (request, h) => {
 };
 
 const getAllBooksHandler = (request, h) => {
-  console.log(books);
   const { name, reading, finished } = request.query;
 
   filteredBooks = books;
@@ -122,8 +121,6 @@ const editBookByIdHandler = (request, h) => {
   const updatedAt = new Date().toISOString;
 
   const index = books.findIndex((book) => book.id === id);
-
-  console.log(body.name === true);
 
   if (index !== -1) {
     if (!body.name) {
